@@ -23,7 +23,7 @@ header{
     left: 28%;
     bottom: 0;
     right: 0;
-    font-size: 16px;
+    font-size: 30px;
     font-family:cursive;
     font-weight: bold;
 }
@@ -43,4 +43,10 @@ header{
     color: white;
     font-weight :bold;
     
+}
+
+@media print and (width: 5.83in) and (height: 8.27in) {
+    @page {
+    margin: 1in;
+    }
 }
