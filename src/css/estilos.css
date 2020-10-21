@@ -19,13 +19,26 @@ header{
 }
 .certificado .persona{
     position: absolute;
-    top: 30%;
-    left: 28%;
-    bottom: 0;
+    top: 0;
+    left: 0;
     right: 0;
+    bottom: 0;
+    margin: auto;
     font-size: 30px;
-    font-family:cursive;
+    font-family: cursive;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.certificado .qr{
+    position: absolute;
+    top:20px;
+    left: 30px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .certificado img{
