@@ -6,8 +6,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Login from './components/Login';
 import Certificado from './components/Certificado'
 
-function App() {
 
+const App = () =>{
   
   return (
     <Router>

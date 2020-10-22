@@ -31,6 +31,38 @@ header{
     justify-content: center;
     align-items: center;
 }
+.certificado .descripcion{
+    position: absolute;
+    top: 57%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 20px !important;
+    line-height: 25px !important;
+    width: 80%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* font-weight: ; */
+    text-align: center;
+    align-items: center;
+
+}
+.certificado .fecha{
+    position: absolute;
+    top: 68%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 16px !important;
+    line-height: 25px !important;
+    width: 80%;
+    font-family: cursive;
+    font-weight: 900;
+    text-align: center;
+    align-items: center;
+
+}
 .certificado .qr{
     position: absolute;
     top:20px;
@@ -39,6 +71,9 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.negrilla{
+    font-weight: 900;
 }
 
 .certificado img{

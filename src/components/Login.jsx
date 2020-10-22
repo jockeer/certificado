@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
+import axios from 'axios'
 
-const Login = () => {
+
+const Login = (props) => {
     
     const[login,setLogin]=useState({
         usu:'',
@@ -9,6 +11,8 @@ const Login = () => {
 
     const {usu,pass}=login
 
+
+
     const onChange = e =>{
         setLogin({
             ...login,
@@ -16,23 +20,17 @@ const Login = () => {
         })
     }
 
-    const parseJWT = (token)=>{
-        let base64Url = token.split('.')[1];
-        var base64= base64Url.replace('-', '+').replace('_','/');
-        const datos = JSON.parse(window.atob(base64))
+    // const parseJWT = (token)=>{
+    //     let base64Url = token.split('.')[1];
+    //     var base64= base64Url.replace('-', '+').replace('_','/');
+    //     const datos = JSON.parse(window.atob(base64))
 
-        let fecha= new Date(datos.exp*1000)
+    //     let fecha= new Date(datos.exp*1000)       
 
-        
-            var datum = Date.parse('10/21/2020 15:40:30');
-            const fechaStamp =  datum/1000;
-         
-         
-        
-        // let mes = fetch
-        debugger
-        // debuggerk
-    }
+    //     var datum = Date.parse('10/21/2020 15:40:30');
+    //     const fechaStamp =  datum/1000;       
+    //     debugger
+    // }
 
     const onSubmit =async  e => {
         e.preventDefault();
@@ -42,11 +40,25 @@ const Login = () => {
             return;
         }
 
-        const API = await fetch(`http://localhost:4000/api/login/${usu}/${pass}`)
-        const respuesta = await API.json()
-        // debugger
-        await localStorage.setItem('token',respuesta.token)
-        parseJWT(localStorage.getItem('token'))
+        try {
+            const API = await fetch(`http://localhost:4000/api/login/${usu}/${pass}`)
+            const respuesta = await API.json()
+
+            if ( Object.keys(respuesta).length !== 0 ) {
+                await localStorage.setItem('token',respuesta.token)
+                props.history.push('/certificado');
+                return
+            }else{
+                
+                alert('usuario incorrecto')
+                await localStorage.setItem('token',' ')
+                return
+            }
+            
+        } catch (error) {
+            throw error
+        }
+        
 
     }
 
