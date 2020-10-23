@@ -55,3 +55,18 @@ header{
     height: 100vh;
 }
 /*-------*/
+
+.container.reg{
+    background: white;
+}
+.table tbody tr{
+    font-size: 12px;
+    text-align: center;
+}
+.table .thead-dark th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+    text-align: center;
+    vertical-align: inherit;
+}
