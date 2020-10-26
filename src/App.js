@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Certificado from './components/Certificado'
 import Registro from './components/Registro';
 import RegistroCertificado from './components/RegistroCertificado';
+import Home from './components/Home';
 
 
 const App = () =>{
@@ -15,7 +16,8 @@ const App = () =>{
     <Router>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/certificado" component={Certificado} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/certificado/:id" component={Certificado} />
         <Route exact path="/registro" component={Registro} />
         <Route exact path="/registro-certificado" component={RegistroCertificado} />
       </Switch>

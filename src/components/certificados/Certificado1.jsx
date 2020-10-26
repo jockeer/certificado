@@ -21,6 +21,7 @@ const Certificado1 = ({id,nombre,fecha,titulo,subtitulo,nro_certificado}) => {
 
 
         <p className="fecha">Santa Cruz de la Sierra, Bolivia – <span className="negrilla2">{fecha !== undefined ?fecha.substr(0,10):null} </span> </p>
+        <p className="nro_certificado">Nº {nro_certificado}</p>
     </figure>
      );
 }

@@ -46,7 +46,7 @@ const Login = (props) => {
 
             if ( Object.keys(respuesta).length !== 0 ) {
                 await localStorage.setItem('token',respuesta.token)
-                props.history.push('/certificado');
+                props.history.push('/home');
                 return
             }else{
                 

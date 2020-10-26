@@ -10,7 +10,7 @@ import Certificado2 from './certificados/Certificado2';
 
 import Error from './Error'
 
-const Certificado = (props) => {
+const Certificado = (props,{match}) => {
 
   const[infoToken,setInfoToken]=useState({
     id:'',
@@ -25,7 +25,7 @@ const Certificado = (props) => {
   const [boton,setBoton]=useState(false)
 
   useEffect(()=>{
-    const probando =()=>{
+    const traerToken =()=>{
       try {
         
         let token = localStorage.getItem('token')
@@ -47,7 +47,7 @@ const Certificado = (props) => {
         props.history.push('/');
       }
     }
-    probando()
+    traerToken()
   },[])
 
   // const {id,nombre,fecha,titulo,subtitulo,nro_certificado}=infousuario
@@ -171,7 +171,7 @@ const Certificado = (props) => {
                     <option value="2">Capacitación Elaboración del Modelo de Negocio de Cada Carrera a través del Lienzo Canvas</option>
                     <option value="3">Capacitación Herramientas Virtuales Emergentes de Educación</option>
                   </select>
-                  <button onClick={buscar} >Buscar Certificado</button>
+                  <button  onClick={buscar} >Buscar Certificado</button>
                 </div>
 
               </div>

@@ -16,6 +16,7 @@ header{
 }
 .container{
     position: relative;
+    background: white;
 }
 .certificado .persona{
     position: absolute;
@@ -63,6 +64,14 @@ header{
     align-items: center;
 
 }
+.certificado .nro_certificado{
+    position: absolute;
+    top: 33%;
+    right: 11%;
+    font-size: 20px;
+    font-weight: bold;
+
+}
 .certificado .qr{
     position: absolute;
     top:20px;
@@ -91,6 +100,65 @@ header{
     color: white;
     font-weight :bold;
     
+}
+.container-certificados{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 50px 0;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+.container-certificados .card .card-header{
+    background: red;
+}
+.container-certificados .card .card-footer{
+    background: rgba(0, 0, 0, 0.712);
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+.container-certificados .card .card-body{
+    padding: 0;
+    overflow: hidden;
+    border-bottom: 5px solid white;
+    position: relative;
+}
+.container-certificados .card .card-body .material-icons{
+    color: red;
+    position: absolute;
+    z-index: 10;
+    top: 5%;
+    left: 5%;
+    background: red;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50px;
+    opacity: .3;
+    transition: .3s;
+    cursor: pointer;
+}
+.container-certificados .card .card-body .material-icons:hover{
+    
+    transform: scale(1.1);
+}
+.container-certificados .card .card-body figure{
+    margin:0;
+}
+.container-certificados .card .card-body figure img{
+    width: 100%;
+    transition: .3s;
+}
+.container-certificados .card:hover img{
+    transform: scale(1.1);
+    
+}
+.container-certificados .card:hover .material-icons{
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sombra{
+    box-shadow: 0px 5px 10px 3px rgba(0,0,0,.5);
 }
 
 @media print and (width: 5.83in) and (height: 8.27in) {
