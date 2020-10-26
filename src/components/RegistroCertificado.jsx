@@ -2,7 +2,7 @@ import React,{Fragment,useState} from 'react';
 import xlsxParser from 'xlsx-parse-json'
 import axios from 'axios'
 
-const Registro = () => {
+const RegistroCertificado = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
 
@@ -13,7 +13,7 @@ const Registro = () => {
             .onFileSelection(e.target.files[0])
             .then(data => {
                 var parsedData = data;
-                // debugger
+                debugger
                 // debugger
                 if (parsedData.CANVAS===undefined) {
                     alert('Seleccione un excel valido')
@@ -33,14 +33,18 @@ const Registro = () => {
             return 
         }
         datosExcel.map(async date => {
+            // debuggerk
+            const API = await fetch(`http://localhost:4000/api/consultarID/${date.ci}`)
+            // debugger
+            const respuesta = await API.json();
+            console.log(respuesta[0].id)
             //nombre,area,docente,encuentro_1,encuentro_2,certificado
             try {
-                await axios.post('http://localhost:4000/api/insertarDatos', {
-                     nombre: date.nombre,
-                     apellido: date.apellido,
-                     area: date.area,
-                     tipo: date.tipo,
-                     ci: date.ci
+                await axios.post('http://localhost:4000/api/insertarCertificado', {
+                    id_persona: parseInt(respuesta[0].id),
+                    id_certificado: 1,
+                    fecha: '2020-10-08',
+                    nro_certificado: date.certificado
                  })
                  .then(function (response) {
                      if(response.status===200){
@@ -59,7 +63,7 @@ const Registro = () => {
 
         })
 
-        window.location.reload(true);
+        // window.location.reload(true);
 
     }
 
@@ -79,10 +83,8 @@ const Registro = () => {
                     <thead className="thead-dark">
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Apellido</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">area</th>
-                        <th scope="col">tipo</th>
+                        <th scope="col">nro_certificado</th>
                         <th scope="col">ci</th>
                         </tr>
                     </thead>
@@ -90,11 +92,10 @@ const Registro = () => {
                         {datosExcel.map(dato => {
                             return  <tr key={dato.Numero}>
                                         <th scope="row">{dato.Numero}</th>
-                                        <td>{dato.apellido}</td>
-                                        <td>{dato.nombre}</td>
-                                        <td>{dato.area}</td>
-                                        <td>{dato.tipo}</td>
+                                        <td>{dato.Nombre_Apellido}</td>
+                                        <td>{dato.certificado}</td>
                                         <td>{dato.ci}</td>
+
                                     </tr>
                         })}
                         
@@ -105,4 +106,4 @@ const Registro = () => {
      );
 }
  
-export default Registro;
+export default RegistroCertificado;

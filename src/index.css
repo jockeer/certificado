@@ -70,3 +70,16 @@ header{
     text-align: center;
     vertical-align: inherit;
 }
+.container-certificado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background: rgb(126, 126, 126);
+    
+}
+
+.container-certificado label{
+    font-weight: bold;
+    color: white;
+}
