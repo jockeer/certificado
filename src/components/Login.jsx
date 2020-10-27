@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 
 
 const Login = (props) => {
@@ -19,18 +19,6 @@ const Login = (props) => {
             [e.target.name]:e.target.value
         })
     }
-
-    // const parseJWT = (token)=>{
-    //     let base64Url = token.split('.')[1];
-    //     var base64= base64Url.replace('-', '+').replace('_','/');
-    //     const datos = JSON.parse(window.atob(base64))
-
-    //     let fecha= new Date(datos.exp*1000)       
-
-    //     var datum = Date.parse('10/21/2020 15:40:30');
-    //     const fechaStamp =  datum/1000;       
-    //     debugger
-    // }
 
     const onSubmit =async  e => {
         e.preventDefault();

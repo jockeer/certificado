@@ -32,26 +32,34 @@ const Registro = () => {
         if (datosExcel.length===0) {
             return 
         }
-        datosExcel.map(async date => {
+        await datosExcel.map(async date => {
             //nombre,area,docente,encuentro_1,encuentro_2,certificado
             try {
-                await axios.post('http://localhost:4000/api/insertarDatos', {
-                     nombre: date.nombre,
-                     apellido: date.apellido,
-                     area: date.area,
-                     tipo: date.tipo,
-                     ci: date.ci
-                 })
-                 .then(function (response) {
-                     if(response.status===200){
-                         // alert('Venta Registrada')
-                         
-                     }else{
-                         
-                         // alert('Error al insertar')
-                     }
-                     // console.log(response.status);
-                 })
+                const API= await fetch(`http://localhost:4000/api/verificarPersona/${date.ci}`)
+                const respuesta = await API.json();
+
+                if (respuesta.length===0) {
+                    await axios.post('http://localhost:4000/api/insertarDatos', {
+                         nombre: date.nombre,
+                         apellido: date.apellido,
+                         area: date.area,
+                         tipo: date.tipo,
+                         ci: date.ci
+                     })
+                     .then(function (response) {
+                         if(response.status===200){
+                             // alert('Venta Registrada')
+                             console.log('usario registrado')
+                         }else{
+                             
+                             // alert('Error al insertar')
+                         }
+                         // console.log(response.status);
+                     })
+                    
+                }else{
+                    console.log('usuario ya registrado');
+                }
                 
             } catch (error) {
                 throw error

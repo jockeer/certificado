@@ -1,9 +1,9 @@
 import React,{Fragment,useState,useEffect} from 'react';
 import tinyPrint from "tiny-print";
 // import QRCode from 'qrcode.react'
-import { QRCode } from "react-qr-svg";
+// import { QRCode } from "react-qr-svg";
 
-import Logo from '../img/certificado2.png'
+// import Logo from '../img/certificado2.png'
 import '../css/estilos.css'
 import Certificado1 from './certificados/Certificado1';
 import Certificado2 from './certificados/Certificado2';
@@ -33,7 +33,7 @@ const Certificado = (props,{match}) => {
         let base64= base64Url.replace('-', '+').replace('_','/');
         const datos = JSON.parse(window.atob(base64))
       
-        let fecha_expiracion= new Date(datos.exp*1000)       
+        // let fecha_expiracion= new Date(datos.exp*1000)       
       
         let date= new Date();
         let fecha_actual = Math.floor(date.getTime()/1000);
@@ -48,7 +48,7 @@ const Certificado = (props,{match}) => {
       }
     }
     traerToken()
-  },[])
+  },[props.history])
 
   // const {id,nombre,fecha,titulo,subtitulo,nro_certificado}=infousuario
   // const {id:IDTOKEN,nombre:nombretoken}=infoToken
@@ -154,9 +154,6 @@ const Certificado = (props,{match}) => {
       setBoton(true)
       
      }
-
-      
-
       
     return (
         <Fragment>

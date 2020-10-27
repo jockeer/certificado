@@ -43,7 +43,10 @@ const RegistroCertificado = () => {
                 await axios.post('http://localhost:4000/api/insertarCertificado', {
                     id_persona: parseInt(respuesta[0].id),
                     id_certificado: 1,
-                    fecha: '2020-10-08',
+                    semestre: date.semestre,
+                    gestion: date.gestion,
+                    mes: date.mes,
+                    dia: date.dia,
                     nro_certificado: date.certificado
                  })
                  .then(function (response) {
@@ -84,6 +87,10 @@ const RegistroCertificado = () => {
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">semestre</th>
+                        <th scope="col">gestion</th>
+                        <th scope="col">mes</th>
+                        <th scope="col">dia</th>
                         <th scope="col">nro_certificado</th>
                         <th scope="col">ci</th>
                         </tr>
@@ -93,6 +100,10 @@ const RegistroCertificado = () => {
                             return  <tr key={dato.Numero}>
                                         <th scope="row">{dato.Numero}</th>
                                         <td>{dato.Nombre_Apellido}</td>
+                                        <td>{dato.semestre}</td>
+                                        <td>{dato.gestion}</td>
+                                        <td>{dato.mes}</td>
+                                        <td>{dato.dia}</td>
                                         <td>{dato.certificado}</td>
                                         <td>{dato.ci}</td>
 
