@@ -214,3 +214,20 @@ input[type=radio]{
     background: red;
     color: #F7F7F7;
   }
+  .jumbotron{
+      position: relative;
+  }
+  .jumbotron i{
+      font-size: 40px;
+      background: white;
+      border-radius: 50%;
+      border: 3px solid black;
+      box-sizing: content-box;
+      color: black;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+  }
+  .titulo{
+      text-align: center;
+  }

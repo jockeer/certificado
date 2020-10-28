@@ -4,7 +4,6 @@ import axios from 'axios'
 
 
 import CertificadoPlantilla from './certificados/CertificadoPlantilla'
-import Certificado from './Certificado'
 
 import Error from './Error'
 
@@ -90,6 +89,7 @@ const Home = (props) => {
                 <h3>Bienvenido: <span><small><b>{nombre}</b></small></span>  </h3>
                 <hr/>
                 <div className="donate">
+                  <h2><center><b><u>Mis Certificados</u></b></center></h2>
                   {certificados.length!==0
                     ?<Fragment>
                       <label><input type="radio" value="TODOS" onChange={onChange} name="toggle" defaultChecked/><span><strong>Todos</strong></span></label>

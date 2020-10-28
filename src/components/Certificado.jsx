@@ -10,22 +10,22 @@ import Certificado2 from './certificados/Certificado2';
 
 import Error from './Error'
 
-const Certificado = (props,{match}) => {
+const Certificado = (props) => {
 
   const[infoToken,setInfoToken]=useState({
     id:'',
     nombre:''
   })
-  const[infousuario,setInfoUsuario]=useState({
+  const[infoCertificado,setInfoCertificado]=useState({
     
   })
 
   const [certificadoSelect,setCertificadoSelect]=useState('0')
   const [error,setError]=useState(false)
-  const [boton,setBoton]=useState(false)
+  const [boton,setBoton]=useState(true)
 
   useEffect(()=>{
-    const traerToken =()=>{
+    const traerToken = async()=>{
       try {
         
         let token = localStorage.getItem('token')
@@ -43,6 +43,10 @@ const Certificado = (props,{match}) => {
           return
         }
         setInfoToken(datos.json[0])
+
+        const API = await fetch(`http://localhost:4000/api/datosCertificado/${props.match.params.id}`)
+        const respuesta = await API.json()
+        setInfoCertificado(respuesta[0])
       } catch (error) {
         props.history.push('/');
       }
@@ -134,58 +138,32 @@ const Certificado = (props,{match}) => {
 
       
 
-     const onChange=async e=>{
-      setCertificadoSelect(e.target.value);
-      setInfoUsuario({})
-      setBoton(false)
-      
-    }
+     
     
-    const buscar =async () =>{
-      const API=await fetch(`http://localhost:4000/api/datosCertificado/${parseInt(infoToken.id)}/${parseInt(certificadoSelect)}`)
-      const respuesta = await API.json()
-      debugger
-      if (respuesta.length===0) {
-        setError(true)
-        return
-      }
-      setError(false)
-      setInfoUsuario(respuesta[0])
-      setBoton(true)
-      
-     }
+    
       
     return (
         <Fragment>
             <header></header>
             <div className="container">
-              <div className="container-certificado">
-                <div className="form-group">
-                  <label htmlFor="certificado_id">Certificado</label>
-                  <select name="certificado_id" id="certificado_id" onChange={onChange} className="form-control">
-                    <option value="0">Seleccione un certificado...</option>
-                    <option value="1">Ciclo de Conferencias Educación, paz y conciencia</option>
-                    <option value="2">Capacitación Elaboración del Modelo de Negocio de Cada Carrera a través del Lienzo Canvas</option>
-                    <option value="3">Capacitación Herramientas Virtuales Emergentes de Educación</option>
-                  </select>
-                  <button  onClick={buscar} >Buscar Certificado</button>
-                </div>
-
-              </div>
-              {/* fecha,titulo,subtitulo,nro_certificado */}
-              {Object.keys(infousuario).length === 0
-              ?null
-              :certificadoSelect==='1'
               
-                ?<Certificado1 id={infousuario.id} nombre={infousuario.nombre} fecha={infousuario.fecha} subtitulo={infousuario.subtitulo} titulo={infousuario.titulo} nro_certificado={infousuario.nro_certificado} />
-                :certificadoSelect==='2'
-                  ?<Certificado2 id={infousuario.id} nombre={infousuario.nombre} fecha={infousuario.fecha} subtitulo={infousuario.subtitulo} titulo={infousuario.titulo} nro_certificado={infousuario.nro_certificado} />
-                  :null
+
+              {Object.keys(infoCertificado).length === 0
+              ?null
+              :<Certificado1 
+                id={infoCertificado.id} 
+                nombre={infoCertificado.nombre} 
+                semestre={infoCertificado.semestre} 
+                gestion={infoCertificado.gestion} 
+                mes={infoCertificado.mes} 
+                dia={infoCertificado.dia} 
+                subtitulo={infoCertificado.subtitulo} 
+                titulo={infoCertificado.titulo} 
+                nro_certificado={infoCertificado.nro_certificado} 
+              />
+              
               }
-              {error
-                ?<Error mensaje='No tiene certificado' clase="alert alert-warning"/>
-                :null
-              }
+              
                 {boton
                     ?<button onClick={imprimir} className="btnImprimir">
                     Imprimir Certificado
