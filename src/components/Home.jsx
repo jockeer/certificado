@@ -7,6 +7,8 @@ import CertificadoPlantilla from './certificados/CertificadoPlantilla'
 
 import Error from './Error'
 
+import {Link} from 'react-router-dom'
+
 const Home = (props) => {
       const[infoToken,setInfoToken]=useState({
         id:'',
@@ -17,10 +19,11 @@ const Home = (props) => {
 
       const[certificadosGestion,setCertificadosGestion]=useState([]);
 
-      const {id,nombre}=infoToken
-
       const [gestiones,guardarGestiones]=useState([])
 
+      const [admin,setAdmin]=useState(false)
+      
+      const {id,nombre}=infoToken
 
       useEffect(() => {
         const traerToken =async ()=>{
@@ -30,6 +33,8 @@ const Home = (props) => {
               let base64Url = token.split('.')[1];
               let base64= base64Url.replace('-', '+').replace('_','/');
               const datos = JSON.parse(window.atob(base64))
+
+              debugger
             
             //   let fecha_expiracion= new Date(datos.exp*1000)       
             
@@ -40,6 +45,13 @@ const Home = (props) => {
                 props.history.push('/');
                 return
               }
+              
+              if (datos.json[0].tipo==='ADMINISTRADOR') {
+                setAdmin(true)
+              }else{
+                setAdmin(false)
+              }
+
               setInfoToken(datos.json[0])
               const API_Gestiones= `http://localhost:4000/api/traerGestiones/${datos.json[0].id}`
               const API_CERTIFICADOS= `http://localhost:4000/api/traerCertificados/${datos.json[0].id}`
@@ -48,14 +60,9 @@ const Home = (props) => {
                 axios(API_Gestiones),
                 axios(API_CERTIFICADOS)
             ])
-            // debugger
             guardarGestiones(info_gestiones.data)
             guardarCertificados(lista_certificado.data)
             setCertificadosGestion(lista_certificado.data)
-              // const API = await fetch(`http://localhost:4000/api/traerCertificados/${datos.json[0].id}`)
-              // const respuesta = await API.json()
-              // debugger
-              // guardarCertificados(respuesta)
               
             } catch (error) {
               props.history.push('/');
@@ -87,6 +94,10 @@ const Home = (props) => {
                 <br/>
                 <h2>Lista de Certificados</h2>
                 <h3>Bienvenido: <span><small><b>{nombre}</b></small></span>  </h3>
+                {admin
+                  ? <div><Link to="/registro" className="btn btn-success">Registro de nuevos Usuarios</Link></div>
+                  :null
+                }
                 <hr/>
                 <div className="donate">
                   <h2><center><b><u>Mis Certificados</u></b></center></h2>
