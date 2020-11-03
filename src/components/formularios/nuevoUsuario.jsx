@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 
-import Error from '../Error'
+import Error from '../layout/Error'
 
 const NuevoUsuario = () => {
 

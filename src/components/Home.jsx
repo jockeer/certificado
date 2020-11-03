@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import CertificadoPlantilla from './certificados/CertificadoPlantilla'
 
-import Error from './Error'
+import Error from './layout/Error'
 
 import {Link} from 'react-router-dom'
 
@@ -23,7 +23,7 @@ const Home = (props) => {
 
       const [admin,setAdmin]=useState(false)
       
-      const {id,nombre}=infoToken
+
 
       useEffect(() => {
         const traerToken =async ()=>{
@@ -93,7 +93,7 @@ const Home = (props) => {
             <div className="container reg">
                 <br/>
                 <h2>Lista de Certificados</h2>
-                <h3>Bienvenido: <span><small><b>{nombre}</b></small></span>  </h3>
+                <h3>Bienvenido: <span><small><b>{infoToken.nombre}</b></small></span>  </h3>
                 {admin
                   ? <div><Link to="/registro" className="btn btn-success">Registro de nuevos Usuarios</Link></div>
                   :null

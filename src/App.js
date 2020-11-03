@@ -4,9 +4,9 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 
 import Login from './components/Login';
-import Certificado from './components/Certificado'
+import Certificado from './components/certificados/Certificado'
 import Registro from './components/Registro';
-import RegistroCertificado from './components/RegistroCertificado';
+import RegistroCertificado from './components/certificados/RegistroCertificado';
 import Home from './components/Home';
 
 

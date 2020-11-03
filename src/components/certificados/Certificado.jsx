@@ -1,24 +1,17 @@
 import React,{Fragment,useState,useEffect} from 'react';
 import tinyPrint from "tiny-print";
 
-import '../css/estilos.css'
-import Certificado1 from './certificados/Certificado1';
+import '../../css/estilos.css'
+import Certificado1 from './Certificado1';
 
-import Error from './Error'
 
 const Certificado = (props) => {
 
-  const[infoToken,setInfoToken]=useState({
-    id:'',
-    nombre:''
-  })
+
   const[infoCertificado,setInfoCertificado]=useState({
     
   })
 
-  const [certificadoSelect,setCertificadoSelect]=useState('0')
-  const [error,setError]=useState(false)
-  const [boton,setBoton]=useState(true)
 
   useEffect(()=>{
     const traerToken = async()=>{
@@ -38,7 +31,7 @@ const Certificado = (props) => {
           props.history.push('/');
           return
         }
-        setInfoToken(datos.json[0])
+        // setInfoToken(datos.json[0])
 
         const API = await fetch(`http://localhost:4000/api/datosCertificado/${props.match.params.id}`)
         const respuesta = await API.json()
@@ -48,7 +41,7 @@ const Certificado = (props) => {
       }
     }
     traerToken()
-  },[props.history])
+  },[props.history,props.match])
 
   // const {id,nombre,fecha,titulo,subtitulo,nro_certificado}=infousuario
   // const {id:IDTOKEN,nombre:nombretoken}=infoToken
@@ -154,12 +147,11 @@ const Certificado = (props) => {
               
               }
               
-                {boton
-                    ?<button onClick={imprimir} className="btnImprimir">
-                    Imprimir Certificado
-                </button>
-                    :null
-                }
+                
+              <button onClick={imprimir} className="btnImprimir">
+                  Imprimir Certificado
+              </button>
+                    
                 
             </div>
         </Fragment>

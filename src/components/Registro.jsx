@@ -3,7 +3,7 @@ import xlsxParser from 'xlsx-parse-json'
 import axios from 'axios'
 import modeloExcel from '../certificados/modeloRegistroUsuarios.xlsx'
 import NuevoUsuario from './formularios/nuevoUsuario';
-
+import Error from './layout/Error'
 import {Link} from 'react-router-dom'
 
 import {FaArrowLeft} from 'react-icons/fa'
@@ -11,6 +11,7 @@ import {FaArrowLeft} from 'react-icons/fa'
 const Registro = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
+    const[error, setError]=useState(false)
 
     const onChange=(e)=>{
         if(e.target.files[0]===undefined) {
@@ -36,11 +37,13 @@ const Registro = () => {
         }
     }
 
-    const onSubmit=async e=>{
+    const onSubmit = async e=>{
         e.preventDefault()
         if (datosExcel.length===0) {
+            setError(true);
             return 
         }
+        setError(false);
         await datosExcel.map(async date => {
             //nombre,area,docente,encuentro_1,encuentro_2,certificado
             try {
@@ -102,6 +105,10 @@ const Registro = () => {
                                 <p><small><i>El archivo EXCEL debe seguir el siguiente modelo de documento: </i> <span>	
                                     <a href={modeloExcel} download="registro.xlsx">registro.xlsx</a></span> </small></p>
                             </div>
+                            {error
+                                ?<Error mensaje="Seleccione un excel valido" clase="alert alert-danger" />
+                                :null
+                            }
                             <button type="submit" className="btn btn-success">Registrar Lista de Excel</button>
                         </form>
 
