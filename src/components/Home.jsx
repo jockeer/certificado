@@ -9,19 +9,22 @@ import Error from './layout/Error'
 
 import {Link} from 'react-router-dom'
 
+import {BiExit} from 'react-icons/bi'
+
+
 const Home = (props) => {
-      const[infoToken,setInfoToken]=useState({
+      const[infoToken, setInfoToken] = useState({
         id:'',
         nombre:''
       })
 
-      const [certificados,guardarCertificados]=useState([]);
+      const [certificados, guardarCertificados] = useState([]);
 
-      const[certificadosGestion,setCertificadosGestion]=useState([]);
+      const[certificadosGestion, setCertificadosGestion] = useState([]);
 
-      const [gestiones,guardarGestiones]=useState([])
+      const [gestiones, guardarGestiones] = useState([])
 
-      const [admin,setAdmin]=useState(false)
+      const [admin, setAdmin] = useState(false)
       
 
 
@@ -88,14 +91,23 @@ const Home = (props) => {
     
     return ( 
         <Fragment>
-            <header></header>
+            <header>
+              <div className="container">
+                <Link to='/' className="btn-cerrar-sesion">
+                  <span>Cerrar Sesion</span> <BiExit className="btn-atras"/>
+                </Link>
+              </div>
+            </header>
 
             <div className="container reg">
                 <br/>
                 <h2>Lista de Certificados</h2>
                 <h3>Bienvenido: <span><small><b>{infoToken.nombre}</b></small></span>  </h3>
                 {admin
-                  ? <div><Link to="/registro" className="btn btn-success">Registro de nuevos Usuarios</Link></div>
+                  ? <div>
+                      <Link to="/registro" className="btn btn-success">Registro de nuevos Usuarios</Link>
+                      <Link to="/registro-certificado" className="btn btn-info ml-5">Registro de Certificados</Link>
+                    </div>
                   :null
                 }
                 <hr/>

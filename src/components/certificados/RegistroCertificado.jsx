@@ -2,6 +2,9 @@ import React,{Fragment,useState} from 'react';
 import xlsxParser from 'xlsx-parse-json'
 import axios from 'axios'
 
+import {FaArrowLeft} from 'react-icons/fa'
+import {Link} from 'react-router-dom'
+
 const RegistroCertificado = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
@@ -72,11 +75,21 @@ const RegistroCertificado = () => {
 
     return ( 
         <Fragment>
-            <header></header>
+            <header>
+                <div className="container">
+                    <Link to="/home">
+                        <FaArrowLeft className="btn-atras"/>
+                    </Link>
+
+                </div>
+            </header>
             <div className="container reg">
+                <br/>
+                <h2><b>Registro de certificados</b></h2>
+                <br/>
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
-                        <input type="file" name="file" id="file" className="form-control" onChange={onChange}/>
+                        <input type="file" name="file" id="file" onChange={onChange}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Registrar</button>
                 </form>

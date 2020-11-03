@@ -87,7 +87,7 @@ const Registro = () => {
         <Fragment>
             <header>
                 <div className="container">
-                    <Link to="/home" className="btn-atras" ><FaArrowLeft className="btn-atras"/></Link>
+                    <Link to="/home"><FaArrowLeft className="btn-atras"/></Link>
                 </div>
             </header>
             <div className="container reg">

@@ -276,4 +276,11 @@ label{
     color: red;
     font-size: 2rem;
 }
-                      
+.btn-cerrar-sesion span{
+    color: white;
+    text-decoration: none;
+}
+.btn-cerrar-sesion:hover{
+    text-decoration: none;
+}
+/* .btn-cerrar-sesion s{  */
