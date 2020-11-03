@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 // import axios from 'axios'
 
+import Logo from '../img/logo.png'
+
 
 const Login = (props) => {
     
@@ -52,8 +54,14 @@ const Login = (props) => {
 
     return ( 
         <div className="contenerdor-login">
-            <div className="card">
+            <div className="card sombra">
+                <div className="card-header">
+                    INGRESAR
+                </div>
                 <div className="card-body">
+                    <figure>
+                        <img src={Logo} alt=""/>
+                    </figure>
                     <form onSubmit={onSubmit}>
                         <div className="form-group">
                             <label htmlFor="usu">usuario:</label>
@@ -63,7 +71,7 @@ const Login = (props) => {
                             <label htmlFor="pass">contrañesa:</label>
                             <input type="password" name="pass" id="pass" value={pass} onChange={onChange} className="form-control"/>
                         </div>
-                        <button type="submit" className="btn btn-primary">Ingresar</button>
+                        <button type="submit" className="btn btn-success">Ingresar</button>
                     </form>
                 </div>
             </div>

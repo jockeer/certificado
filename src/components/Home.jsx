@@ -34,7 +34,7 @@ const Home = (props) => {
               let base64= base64Url.replace('-', '+').replace('_','/');
               const datos = JSON.parse(window.atob(base64))
 
-              debugger
+              // debugger
             
             //   let fecha_expiracion= new Date(datos.exp*1000)       
             
@@ -90,7 +90,7 @@ const Home = (props) => {
         <Fragment>
             <header></header>
 
-            <div className="container">
+            <div className="container reg">
                 <br/>
                 <h2>Lista de Certificados</h2>
                 <h3>Bienvenido: <span><small><b>{nombre}</b></small></span>  </h3>

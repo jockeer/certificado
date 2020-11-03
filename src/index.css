@@ -58,6 +58,7 @@ header{
 
 .container.reg{
     background: white;
+    min-height: 90vh;
 }
 .table tbody tr{
     font-size: 12px;
@@ -83,4 +84,10 @@ header{
     font-weight: bold;
     color: white;
 }
+
+.container-opciones-registro{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
 

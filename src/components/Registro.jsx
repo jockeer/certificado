@@ -1,32 +1,39 @@
 import React,{Fragment,useState} from 'react';
 import xlsxParser from 'xlsx-parse-json'
 import axios from 'axios'
+import modeloExcel from '../certificados/modeloRegistroUsuarios.xlsx'
+import NuevoUsuario from './formularios/nuevoUsuario';
+
+import {Link} from 'react-router-dom'
 
 const Registro = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
 
     const onChange=(e)=>{
-        // debugger
+        if(e.target.files[0]===undefined) {
+            return;
+        }
         try {
             xlsxParser
             .onFileSelection(e.target.files[0])
             .then(data => {
                 var parsedData = data;
-                // debugger
-                // debugger
-                if (parsedData.CANVAS===undefined) {
+
+                if (Object.keys(parsedData).length===0) {
                     alert('Seleccione un excel valido')
                     return
                 }
-                guardarDatosExcel(parsedData.CANVAS)
+
+                guardarDatosExcel(parsedData[Object.keys(parsedData)[0]])
                 
             });
             
         } catch (error) {
-            throw error
+            console.log(error)
         }
     }
+
     const onSubmit=async e=>{
         e.preventDefault()
         if (datosExcel.length===0) {
@@ -73,14 +80,39 @@ const Registro = () => {
 
     return ( 
         <Fragment>
-            <header></header>
+            <header>
+                <div className="container">
+                    <Link to="/home" className="btn-atras" ><i className="material-icons">arrow_back</i></Link>
+                </div>
+            </header>
             <div className="container reg">
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input type="file" name="file" id="file" className="form-control" onChange={onChange}/>
+                <div className="container-opciones-registro">
+                    <div className="item">
+                        <br/>
+                        <h2> <b>Registro masivo de usuarios</b></h2>
+                        <br/>
+                        <form onSubmit={onSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="file">Seleccione su archivo Excel</label>
+                                <br/>
+                                <input type="file" name="file" id="file" className="" onChange={onChange}/>
+                                <br/>
+                                <p><small><i>El archivo EXCEL debe seguir el siguiente modelo de documento: </i> <span>	
+                                    <a href={modeloExcel} download="registro.xlsx">registro.xlsx</a></span> </small></p>
+                            </div>
+                            <button type="submit" className="btn btn-success">Registrar Lista de Excel</button>
+                        </form>
+
                     </div>
-                    <button type="submit" className="btn btn-primary">Registrar</button>
-                </form>
+                    <div className="item">
+                        <br/>
+                        <h2> <b>Registro individual de usuarios</b></h2>
+                        <br/>
+                        <NuevoUsuario/>
+
+                    </div>
+
+                </div>
                 <h2>Lista</h2>
 
                 <table className="table">

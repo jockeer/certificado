@@ -6,7 +6,6 @@ import tinyPrint from "tiny-print";
 // import Logo from '../img/certificado2.png'
 import '../css/estilos.css'
 import Certificado1 from './certificados/Certificado1';
-import Certificado2 from './certificados/Certificado2';
 
 import Error from './Error'
 
@@ -136,16 +135,10 @@ const Certificado = (props) => {
         });
       }
 
-      
-
-     
-    
-    
-      
     return (
         <Fragment>
             <header></header>
-            <div className="container">
+            <div className="container reg">
               
 
               {Object.keys(infoCertificado).length === 0

@@ -9,6 +9,18 @@ header{
     min-height: 8vh;
     background: #D61F31;
 }
+header .container{
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+
+header .container .btn-atras i{
+    color: white;
+    font-weight: bold;
+    /* font-size: 2rem; */
+
+}
 .certificado{
     margin: 0;
     position: relative;
@@ -16,7 +28,7 @@ header{
 }
 .container{
     position: relative;
-    background: white;
+    /* background: white; */
 }
 .certificado .persona{
     position: absolute;
@@ -177,57 +189,74 @@ input[type=radio]{
   }
   
   /**/
-  .donate{
-    width: 100%;
-  }
-  .donate label {
-    margin: 0 4px;
-    background-color: #343A40;
-    color: white;
-    border-radius: 4px;
-    border: 1px solid #D0D0D0;
-    overflow: hidden;
-    cursor: pointer;
-    font-family: var(--textFont);
-    /* padding: 5px 10px; */
-  }
+.donate{
+  width: 100%;
+}
+.donate label {
+  margin: 0 4px;
+  background-color: #343A40;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid #D0D0D0;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--textFont);
+  /* padding: 5px 10px; */
+}
+
+.donate label span {
+  text-align: center;
+  font-size: 14px;
+  padding: 3px 15px;
+  display: block;
   
-  .donate label span {
+}
+
+.donate input {
+  padding: 5px;
+}
+.donate label input {
+  position: absolute;
+  opacity: 0;
+  /*top: -20px;*/
+  
+}
+
+.donate input:checked+span {
+  background: red;
+  color: #F7F7F7;
+}
+.jumbotron{
+    position: relative;
+}
+.jumbotron i{
+    font-size: 40px;
+    background: white;
+    border-radius: 50%;
+    border: 3px solid black;
+    box-sizing: content-box;
+    color: black;
+  position: absolute;
+  top: 15%;
+  left: 2%;
+}
+.titulo{
     text-align: center;
-    font-size: 14px;
-    padding: 3px 15px;
-    display: block;
-    
-  }
-  
-  .donate input {
-    padding: 5px;
-  }
-  .donate label input {
-    position: absolute;
-    opacity: 0;
-    /*top: -20px;*/
-    
-  }
-  
-  .donate input:checked+span {
-    background: red;
-    color: #F7F7F7;
-  }
-  .jumbotron{
-      position: relative;
-  }
-  .jumbotron i{
-      font-size: 40px;
-      background: white;
-      border-radius: 50%;
-      border: 3px solid black;
-      box-sizing: content-box;
-      color: black;
-    position: absolute;
-    top: 15%;
-    left: 2%;
-  }
-  .titulo{
+}
+.card .card-header{
       text-align: center;
-  }
+      background: #D61F31;
+      color: white;
+      font-weight: bold;
+}
+.card .card-body figure{
+    text-align: center;
+}
+.card .card-body img{
+    width: 80%;
+}
+label{
+    font-weight: bold;
+}
+
+                      
