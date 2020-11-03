@@ -6,6 +6,8 @@ import NuevoUsuario from './formularios/nuevoUsuario';
 
 import {Link} from 'react-router-dom'
 
+import {FaArrowLeft} from 'react-icons/fa'
+
 const Registro = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
@@ -82,7 +84,7 @@ const Registro = () => {
         <Fragment>
             <header>
                 <div className="container">
-                    <Link to="/home" className="btn-atras" ><i className="material-icons">arrow_back</i></Link>
+                    <Link to="/home" className="btn-atras" ><FaArrowLeft className="btn-atras"/></Link>
                 </div>
             </header>
             <div className="container reg">

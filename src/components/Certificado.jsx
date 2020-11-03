@@ -1,9 +1,6 @@
 import React,{Fragment,useState,useEffect} from 'react';
 import tinyPrint from "tiny-print";
-// import QRCode from 'qrcode.react'
-// import { QRCode } from "react-qr-svg";
 
-// import Logo from '../img/certificado2.png'
 import '../css/estilos.css'
 import Certificado1 from './certificados/Certificado1';
 

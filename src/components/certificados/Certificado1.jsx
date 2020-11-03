@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react'
 import Logo from '../../img/certificado2.png'
 import { QRCode } from "react-qr-svg";
+import { FaArrowLeft } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 
 const Certificado1 = ({id,nombre,semestre,gestion,mes,dia,titulo,subtitulo,nro_certificado}) => {
@@ -9,8 +10,8 @@ const Certificado1 = ({id,nombre,semestre,gestion,mes,dia,titulo,subtitulo,nro_c
     return ( 
       <Fragment>
         <div className="jumbotron">
-          <Link to='/home'>
-            <i className="material-icons">arrow_back</i> 
+          <Link  to='/home'>
+            <FaArrowLeft className="btnsss"/>
           </Link>
           <div className="titulo">
             <b>Certificado de: </b> 

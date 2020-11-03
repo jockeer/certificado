@@ -60,7 +60,7 @@ const Login = (props) => {
                 </div>
                 <div className="card-body">
                     <figure>
-                        <img src={Logo} alt=""/>
+                        <img className="logo-login" src={Logo} alt=""/>
                     </figure>
                     <form onSubmit={onSubmit}>
                         <div className="form-group">

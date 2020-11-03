@@ -76,6 +76,11 @@ header .container .btn-atras i{
     align-items: center;
 
 }
+.jumbotron{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .certificado .nro_certificado{
     position: absolute;
     top: 33%;
@@ -221,6 +226,9 @@ input[type=radio]{
   /*top: -20px;*/
   
 }
+.contenerdor-login .card.sombra .logo-login{
+    width: 20%;
+}
 
 .donate input:checked+span {
   background: red;
@@ -259,4 +267,13 @@ label{
     font-weight: bold;
 }
 
+.btn-atras{
+    color: white;
+    font-size: 2rem;
+
+}
+.btnsss{
+    color: red;
+    font-size: 2rem;
+}
                       
