@@ -1,15 +1,22 @@
 import React,{Fragment,useState} from 'react';
 import xlsxParser from 'xlsx-parse-json'
 import axios from 'axios'
-
+import Error from '../layout/Error'
 import {FaArrowLeft} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
+
+import modeloExcel from '../../certificados/modeloRegistroCertificados.xlsx'
+import NuevoCertificado from '../formularios/nuevoCertificado';
 
 const RegistroCertificado = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
+    const[error, setError]=useState(false)
 
     const onChange=(e)=>{
+        if(e.target.files[0]===undefined) {
+            return;
+        }
         // debugger
         try {
             xlsxParser
@@ -31,10 +38,12 @@ const RegistroCertificado = () => {
         }
     }
     const onSubmit=async e=>{
-        e.preventDefault()
+        e.preventDefault();
         if (datosExcel.length===0) {
-            return 
+            setError(true);
+            return;
         }
+        setError(false);
         datosExcel.map(async date => {
             // debuggerk
             const API = await fetch(`http://localhost:4000/api/consultarID/${date.ci}`)
@@ -84,15 +93,39 @@ const RegistroCertificado = () => {
                 </div>
             </header>
             <div className="container reg">
-                <br/>
-                <h2><b>Registro de certificados</b></h2>
-                <br/>
-                <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input type="file" name="file" id="file" onChange={onChange}/>
+                <div className="container-opciones-registro">
+                    
+                    <div className="item">
+                        <br/>
+                            <h2> <b>Registro masivo de certificados</b></h2>
+                        <br/>
+                        <form onSubmit={onSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="file">Seleccione su archivo excel</label>
+                               
+                                <input type="file" name="file" id="file" onChange={onChange}/>
+                                <br/>
+                                <p><small><i>El archivo EXCEL debe seguir el siguiente modelo de documento: </i> <span>	
+                                            <a href={modeloExcel} download="registro.xlsx">registroCertificado.xlsx</a></span> </small></p>
+                            </div>
+                            {error
+                                ?<Error mensaje="Seleccione un excel valido" clase="alert alert-danger" />
+                                :null
+                            }
+                            <button type="submit" className="btn btn-primary">Registrar Lista de excel</button>
+                        </form>
                     </div>
-                    <button type="submit" className="btn btn-primary">Registrar</button>
-                </form>
+                    <div className="item">
+                        <br/>
+                            <h2> <b>Registro individual de certificados</b></h2>
+                        <br/>   
+                        <NuevoCertificado/>
+                    </div>
+                    
+                </div>
+                <hr/>
+               
+                
                 <h2>Lista</h2>
 
                 <table className="table">
