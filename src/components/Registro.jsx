@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom'
 
 import {FaArrowLeft} from 'react-icons/fa'
 
+import swal from 'sweetalert'
+
 const Registro = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
@@ -78,8 +80,13 @@ const Registro = () => {
             }
 
         })
+        await swal({
+            title:'Usuarios registrados correctamente',
+            icon:'success',
+            timer:'1500'
+        })
 
-        window.location.reload(true);
+        window.location.reload()
 
     }
 

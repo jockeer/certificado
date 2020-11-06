@@ -5,11 +5,21 @@ import '../../css/estilos.css'
 import Certificado1 from './Certificado1';
 
 
+import {Link} from 'react-router-dom'
+import {BiExit} from 'react-icons/bi'
+import { FaUser } from "react-icons/fa";
+
+
 const Certificado = (props) => {
 
 
   const[infoCertificado,setInfoCertificado]=useState({
     
+  })
+
+  const[infoToken, setInfoToken] = useState({
+    id:'',
+    nombre:''
   })
 
 
@@ -31,7 +41,7 @@ const Certificado = (props) => {
           props.history.push('/');
           return
         }
-        // setInfoToken(datos.json[0])
+        setInfoToken(datos.json[0])
 
         const API = await fetch(`http://localhost:4000/api/datosCertificado/${props.match.params.id}`)
         const respuesta = await API.json()
@@ -127,7 +137,17 @@ const Certificado = (props) => {
 
     return (
         <Fragment>
-            <header></header>
+            <header>
+              <div className="container" style={{justifyContent:'space-between'}}>
+                <div>
+                <FaUser className="icon-user mr-2"/><span className="text-white"><small><b>{infoToken.nombre.toUpperCase()}</b></small></span>
+                  
+                </div>
+                <Link to='/' className="btn-cerrar-sesion">
+                  <span> <small>Cerrar Sesion</small> </span> <BiExit className="btn-atras"/>
+                </Link>
+              </div>
+            </header>
             <div className="container reg">
               
 

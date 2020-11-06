@@ -44,6 +44,14 @@ header .container .btn-atras i{
     justify-content: center;
     align-items: center;
 }
+.icon-user{
+    color: white;
+    font-size: 30px;
+    /* background: green; */
+    padding: 5px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
 .certificado .descripcion{
     position: absolute;
     top: 57%;

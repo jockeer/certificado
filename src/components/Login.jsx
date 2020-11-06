@@ -3,6 +3,9 @@ import React,{useState} from 'react';
 
 import Logo from '../img/logo.png'
 
+import swal from 'sweetalert'
+
+
 
 const Login = (props) => {
     
@@ -26,7 +29,13 @@ const Login = (props) => {
         e.preventDefault();
         //validar
         if (usu.trim()===''||pass.trim()==='') {
-            alert('llene todos los campos')
+            swal({
+                title:'Usuario incorrecto',
+                text:'Llene todo los campos',
+                icon:'error',
+                button:'Aceptar'
+
+            })
             return;
         }
 
@@ -40,7 +49,11 @@ const Login = (props) => {
                 return
             }else{
                 
-                alert('usuario incorrecto')
+                swal({
+                    title:'Usuario incorrecto',
+                    icon:'error'
+                })
+
                 await localStorage.setItem('token',' ')
                 return
             }

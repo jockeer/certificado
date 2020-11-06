@@ -43,6 +43,7 @@ const NuevoCertificado = () => {
             setVerificacion(true);
             return
         }
+        
         setVerificacion(false)
         
     }

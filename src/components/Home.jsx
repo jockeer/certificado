@@ -12,6 +12,9 @@ import {Link} from 'react-router-dom'
 import {BiExit} from 'react-icons/bi'
 
 
+import { FaUser } from "react-icons/fa";
+
+
 const Home = (props) => {
       const[infoToken, setInfoToken] = useState({
         id:'',
@@ -92,9 +95,13 @@ const Home = (props) => {
     return ( 
         <Fragment>
             <header>
-              <div className="container">
+              <div className="container" style={{justifyContent:'space-between'}}>
+                <div>
+                <FaUser className="icon-user mr-2"/><span className="text-white"><small><b>{infoToken.nombre.toUpperCase()}</b></small></span>
+                  
+                </div>
                 <Link to='/' className="btn-cerrar-sesion">
-                  <span>Cerrar Sesion</span> <BiExit className="btn-atras"/>
+                  <span> <small>Cerrar Sesion</small> </span> <BiExit className="btn-atras"/>
                 </Link>
               </div>
             </header>
@@ -102,7 +109,7 @@ const Home = (props) => {
             <div className="container reg">
                 <br/>
                 <h2>Lista de Certificados</h2>
-                <h3>Bienvenido: <span><small><b>{infoToken.nombre}</b></small></span>  </h3>
+                
                 {admin
                   ? <div>
                       <Link to="/registro" className="btn btn-success">Registro de nuevos Usuarios</Link>
@@ -123,8 +130,7 @@ const Home = (props) => {
                     </Fragment>
                     :<Error mensaje="Usted no tiene ningun certificado" clase="alert alert-danger" />
                   }
-                    
-                    
+  
                 </div>
                 <div className="container-certificados">
                   {certificadosGestion.map(certificado=>{

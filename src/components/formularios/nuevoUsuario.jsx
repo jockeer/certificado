@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import Error from '../layout/Error'
 
+import swal from 'sweetalert'
+
 const NuevoUsuario = () => {
 
     const[usuario,guardarUsuario]=useState({
@@ -45,11 +47,16 @@ const NuevoUsuario = () => {
                          tipo: tipo,
                          ci: ci
                      })
-                     .then(function (response) {
+                     .then(async function (response) {
                          if(response.status===200){
                              // alert('Venta Registrada')
                              console.log('usario registrado')
-                             window.location.reload(true);
+                             await swal({
+                                title:'Usuarios registrados correctamente',
+                                icon:'success',
+                                timer:'1500'
+                            })
+                            window.location.reload()
                          }else{
                              
                              // alert('Error al insertar')
