@@ -36,7 +36,11 @@ const NuevoUsuario = () => {
         const API= await fetch(`http://localhost:4000/api/verificarPersona/${ci}`)
         const respuesta = await API.json();
         if (respuesta.length!==0) {
-            alert('ya existe un usuario registrador con ese carnet de identidad')
+            swal({
+                title:'ya existe un usuario registrado con ese carnet',
+                icon:'info',
+                timer:'1500'
+            })
             return;
         }
 
@@ -50,19 +54,24 @@ const NuevoUsuario = () => {
                      .then(async function (response) {
                          if(response.status===200){
                              // alert('Venta Registrada')
-                             console.log('usario registrado')
-                             await swal({
-                                title:'Usuarios registrados correctamente',
+                             
+                             swal({
+                                title:'Usuario registrado correctamente',
                                 icon:'success',
                                 timer:'1500'
-                            })
-                            window.location.reload()
+                                })
+                            
                          }else{
                              
-                             // alert('Error al insertar')
+                            swal({
+                                title:'Error al registrar',
+                                icon:'error',
+                                timer:'1500'
+                                })
                          }
-                         // console.log(response.status);
+
                      })
+        window.location.reload()
 
 
     }

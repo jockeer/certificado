@@ -26,7 +26,11 @@ const Registro = () => {
                 var parsedData = data;
 
                 if (Object.keys(parsedData).length===0) {
-                    alert('Seleccione un excel valido')
+                    swal({
+                        title:'Seleccione un Excel valido',
+                        icon:'success',
+                        timer:'1500'
+                    })
                     return
                 }
 
@@ -62,13 +66,14 @@ const Registro = () => {
                      })
                      .then(function (response) {
                          if(response.status===200){
-                             // alert('Venta Registrada')
-                             console.log('usario registrado')
-                         }else{
                              
-                             // alert('Error al insertar')
+                             console.log('Usuario Registrado');
+                            }else{
+                                
+                                console.log('Error al registrar');
+                            
                          }
-                         // console.log(response.status);
+                         
                      })
                     
                 }else{

@@ -8,6 +8,8 @@ import {Link} from 'react-router-dom'
 import modeloExcel from '../../certificados/modeloRegistroCertificados.xlsx'
 import NuevoCertificado from '../formularios/nuevoCertificado';
 
+import swal from 'sweetalert'
+
 const RegistroCertificado = () => {
     
     const[datosExcel,guardarDatosExcel]=useState([])
@@ -23,18 +25,22 @@ const RegistroCertificado = () => {
             .onFileSelection(e.target.files[0])
             .then(data => {
                 var parsedData = data;
-                debugger
                 // debugger
-                if (parsedData.CANVAS===undefined) {
-                    alert('Seleccione un excel valido')
+                // debugger
+                if (Object.keys(parsedData).length===0) {
+                    swal({
+                        title:'Seleccione un Excel valido',
+                        icon:'success',
+                        timer:'1500'
+                    })
                     return
                 }
-                guardarDatosExcel(parsedData.CANVAS)
+                guardarDatosExcel(parsedData[Object.keys(parsedData)[0]])
                 
             });
             
         } catch (error) {
-            throw error
+            console.log(error)
         }
     }
     const onSubmit=async e=>{
@@ -44,14 +50,14 @@ const RegistroCertificado = () => {
             return;
         }
         setError(false);
-        datosExcel.map(async date => {
+        await datosExcel.map(async date => {
             // debuggerk
-            const API = await fetch(`http://localhost:4000/api/consultarID/${date.ci}`)
-            // debugger
-            const respuesta = await API.json();
-            console.log(respuesta[0].id)
-            //nombre,area,docente,encuentro_1,encuentro_2,certificado
             try {
+                const API = await fetch(`http://localhost:4000/api/consultarID/${date.ci}`)
+                // debugger
+                const respuesta = await API.json();
+                console.log(respuesta[0].id)
+                //nombre,area,docente,encuentro_1,encuentro_2,certificado
                 await axios.post('http://localhost:4000/api/insertarCertificado', {
                     id_persona: parseInt(respuesta[0].id),
                     id_certificado: 1,
@@ -63,13 +69,14 @@ const RegistroCertificado = () => {
                  })
                  .then(function (response) {
                      if(response.status===200){
-                         // alert('Venta Registrada')
+                       console.log('certificado Registrado');
                          
                      }else{
                          
-                         // alert('Error al insertar')
+                         console.log('Error al registrar');
                      }
-                     // console.log(response.status);
+                         
+                        
                  })
                 
             } catch (error) {
@@ -77,8 +84,13 @@ const RegistroCertificado = () => {
             }
 
         })
+        await swal({
+            title:'Certificados registrados correctamente',
+            icon:'success',
+            timer:'1500'
+        })
 
-        // window.location.reload(true);
+        window.location.reload(true);
 
     }
 
